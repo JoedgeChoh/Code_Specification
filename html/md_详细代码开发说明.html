@@ -1,0 +1,325 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>Code_Specification: 详细代码开发说明</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Code_Specification
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li class="current"><a href="pages.html"><span>相关页面</span></a></li>
+      <li><a href="namespaces.html"><span>命名空间</span></a></li>
+      <li><a href="annotated.html"><span>类</span></a></li>
+      <li><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">详细代码开发说明 </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><h2>目录</h2>
+<ul>
+<li><a href="#%E8%AF%A6%E7%BB%86%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%E8%AF%B4%E6%98%8E">详细代码开发说明</a><ul>
+<li><a href="#%E7%9B%AE%E5%BD%95">目录</a></li>
+<li><a href="#%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7">开发工具</a></li>
+<li><a href="#%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85">插件安装</a><ul>
+<li><a href="#%E6%8F%92%E4%BB%B6%E5%90%8D%E7%A7%B0">插件名称</a></li>
+<li><a href="#%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85">插件安装</a></li>
+<li><a href="#%E5%85%B6%E4%BB%96%E8%BD%AF%E4%BB%B6%E5%8F%8A%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85">其他软件及依赖安装</a></li>
+<li><a href="#%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE">插件配置</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83">代码开发规范</a><ul>
+<li><a href="#%E9%A1%B9%E7%9B%AE%E5%8F%8A%E6%96%87%E4%BB%B6%E5%BB%BA%E7%AB%8B%E5%8E%9F%E5%88%99">项目及文件建立原则</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%E5%8E%9F%E5%88%99">代码开发原则</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E5%8E%9F%E5%88%99%E5%8F%8Adoxygen%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E">代码注释原则及doxygen使用说明</a><ul>
+<li><a href="#c">C++</a></li>
+<li><a href="#python">Python</a></li>
+<li><a href="#todo%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99">TODO使用规则</a></li>
+<li><a href="#doxygen%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95">doxygen使用方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%9F%BA%E4%BA%8Evocode%E7%9A%84git%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95">基于vocode的git使用方法</a></li>
+</ul>
+</li>
+</ul>
+<h2>开发工具</h2>
+<blockquote class="doxtable">
+<p>推荐但不限定于使用vscode作为代码开发工具，如不使用vscode，请遵循代码及注释规范。 </p>
+</blockquote>
+<p>工具名称：vscode</p>
+<p>版本：暂不限定</p>
+<p>下载地址：https://code.visualstudio.com/</p>
+<p>安装方式：下载.deb格式安装包，直接双击或者执行&lt;tt&gt;sudo dpkg -i xxx.deb</p>
+<p>安装包位置：<code>soft_deb/code_1.48.1-1597857616_amd64.deb</code></p>
+<h2>插件安装</h2>
+<blockquote class="doxtable">
+<p>该插件可以帮助大家开发过程更加顺畅，并非强制要求。 </p>
+</blockquote>
+<h3>插件名称</h3>
+<p>1、名称: C/C++</p>
+<p>ID: ms-vscode.cpptools</p>
+<p>说明: C/C++ IntelliSense, debugging, and code browsing.</p>
+<p>版本: 1.0.1-insiders</p>
+<p>发布者: Microsoft</p>
+<p>VS Marketplace 链接: <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools">https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools</a></p>
+<p>2、名称: C++ Intellisense</p>
+<p>ID: austin.code-gnu-global</p>
+<p>说明: C/C++ Intellisense with the help of GNU Global tags</p>
+<p>版本: 0.2.2</p>
+<p>发布者: austin</p>
+<p>VS Marketplace 链接: <a href="https://marketplace.visualstudio.com/items?itemName=austin.code-gnu-global">https://marketplace.visualstudio.com/items?itemName=austin.code-gnu-global</a></p>
+<p>3、名称: Python</p>
+<p>ID: ms-python.python</p>
+<p>说明: Linting, Debugging (multi-threaded, remote), Intellisense, Jupyter Notebooks, code formatting, refactoring, unit tests, snippets, and more.</p>
+<p>版本: 2020.8.109390</p>
+<p>发布者: Microsoft</p>
+<p>VS Marketplace 链接: <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">https://marketplace.visualstudio.com/items?itemName=ms-python.python</a></p>
+<p>4、名称: ROS</p>
+<p>ID: ms-iot.vscode-ros</p>
+<p>说明: Develop Robot Operating System (ROS) with Visual Studio Code.</p>
+<p>版本: 0.6.4</p>
+<p>发布者: Microsoft</p>
+<p>VS Marketplace 链接: <a href="https://marketplace.visualstudio.com/items?itemName=ms-iot.vscode-ros">https://marketplace.visualstudio.com/items?itemName=ms-iot.vscode-ros</a></p>
+<p>5、名称: Todo Tree</p>
+<p>ID: gruntfuggly.todo-tree</p>
+<p>说明: Show TODO, FIXME, etc. comment tags in a tree view</p>
+<p>版本: 0.0.178</p>
+<p>发布者: Gruntfuggly</p>
+<p>VS Marketplace 链接: <a href="https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree">https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree</a></p>
+<p>6、名称: Markdown All in One</p>
+<p>ID: yzhang.markdown-all-in-one</p>
+<p>说明: All you need to write Markdown (keyboard shortcuts, table of contents, auto preview and more)</p>
+<p>版本: 3.3.0</p>
+<p>发布者: Yu Zhang</p>
+<p>VS Marketplace 链接: <a href="https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one">https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one</a></p>
+<p>7、名称: Guides</p>
+<p>ID: spywhere.guides</p>
+<p>说明: An extension for more guide lines</p>
+<p>版本: 0.9.3</p>
+<p>发布者: spywhere</p>
+<p>VS Marketplace 链接: <a href="https://marketplace.visualstudio.com/items?itemName=spywhere.guides">https://marketplace.visualstudio.com/items?itemName=spywhere.guides</a></p>
+<p>8、名称: GitLens — Git supercharged</p>
+<p>ID: eamodio.gitlens</p>
+<p>说明: Supercharge the Git capabilities built into Visual Studio Code — Visualize code authorship at a glance via Git blame annotations and code lens, seamlessly navigate and explore Git repositories, gain valuable insights via powerful comparison commands, and so much more</p>
+<p>版本: 10.2.2</p>
+<p>发布者: Eric Amodio</p>
+<p>VS Marketplace 链接: <a href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens">https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens</a></p>
+<p>9、名称: Doxygen Documentation Generator</p>
+<p>ID: cschlosser.doxdocgen</p>
+<p>说明: Let me generate Doxygen documentation from your source code for you.</p>
+<p>版本: 0.7.2</p>
+<p>发布者: Christoph Schlosser</p>
+<p>VS Marketplace 链接: <a href="https://marketplace.visualstudio.com/items?itemName=cschlosser.doxdocgen">https://marketplace.visualstudio.com/items?itemName=cschlosser.doxdocgen</a></p>
+<p>10、名称: Bracket Pair Colorizer</p>
+<p>ID: coenraads.bracket-pair-colorizer</p>
+<p>说明: A customizable extension for colorizing matching brackets</p>
+<p>版本: 1.0.61</p>
+<p>发布者: CoenraadS</p>
+<p>VS Marketplace 链接: <a href="https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer">https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer</a></p>
+<p>11、名称: Auto Markdown TOC</p>
+<p>ID: huntertran.auto-markdown-toc</p>
+<p>说明: Markdown TOC (Table Of Contents) Plugin for Visual Studio Code.</p>
+<p>版本: 3.0.12</p>
+<p>发布者: Hunter Tran</p>
+<p>VS Marketplace 链接: <a href="https://marketplace.visualstudio.com/items?itemName=huntertran.auto-markdown-toc">https://marketplace.visualstudio.com/items?itemName=huntertran.auto-markdown-toc</a></p>
+<h3>插件安装</h3>
+<ol type="1">
+<li><code>Ctrl+Shift+X</code>打开扩展页面；</li>
+<li>在搜索栏搜索上述的插件名称或插件ID，找寻对应的插件；</li>
+<li>点击<code>install</code>进行安装；</li>
+<li>重新启动vscode。</li>
+</ol>
+<h3>其他软件及依赖安装</h3>
+<ol type="1">
+<li><code>sudo apt-get install graphviz graphviz-doc</code>；</li>
+<li><code>sudo apt-get install doxygen doxygen-gui</code>。</li>
+</ol>
+<h3>插件配置</h3>
+<ol type="1">
+<li><code>Ctrl+Shift+P</code>打开控制端口；</li>
+<li>在控制端口中输入<code>settings json</code>，点击<code>Open Setting</code>；</li>
+<li>将下述配置粘贴至<code>settings.json</code>文件中，并按照注释进行修改：</li>
+</ol>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;{</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;    &quot;window.zoomLevel&quot;: 2,</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    &quot;editor.fontSize&quot;: 15,</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    &quot;workbench.colorTheme&quot;: &quot;Horizon Bright Italic&quot;,</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    &quot;cmake.configureOnOpen&quot;: true,</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    &quot;explorer.confirmDelete&quot;: false,</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    &quot;terminal.integrated.shell.linux&quot;: &quot;/bin/bash&quot;,</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    &quot;editor.renderIndentGuides&quot;: false,</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    &quot;git.ignoreMissingGitWarning&quot;: true,</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    &quot;gitlens.views.repositories.location&quot;: &quot;gitlens&quot;,</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    &quot;gitlens.views.fileHistory.location&quot;: &quot;gitlens&quot;,</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    &quot;gitlens.views.lineHistory.location&quot;: &quot;gitlens&quot;,</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    &quot;gitlens.views.compare.location&quot;: &quot;gitlens&quot;,</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    &quot;gitlens.views.search.location&quot;: &quot;gitlens&quot;,</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    &quot;[markdown]&quot;: {</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;      &quot;editor.defaultFormatter&quot;: &quot;yzhang.markdown-all-in-one&quot;</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    },</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    &quot;files.autoSave&quot;: &quot;afterDelay&quot;,</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    &quot;gitlens.gitCommands.closeOnFocusOut&quot;: true,</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    &quot;git.autofetch&quot;: true,</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    &quot;todo-tree.tree.showScanModeButton&quot;: false,</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    &quot;C_Cpp.updateChannel&quot;: &quot;Insiders&quot;,</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    &quot;launch&quot;: {</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;      &quot;configurations&quot;: [],</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;      &quot;compounds&quot;: []</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    },</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    &quot;doxdocgen.file.copyrightTag&quot;: [</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;      &quot;@copyright Copyright (c) {year}  潍柴动力&quot;</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    ],</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    &quot;doxdocgen.file.customTag&quot;: [</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        &quot;@par 修改日志:&quot;,</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        &quot;&lt;table&gt;&quot;,</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        &quot;&lt;tr&gt;&lt;th&gt;Date       &lt;th&gt;Version &lt;th&gt;Author  &lt;th&gt;Description&quot;,</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        &quot;&lt;tr&gt;&lt;td&gt;{date} &lt;td&gt;1.0     &lt;td&gt;孙凯信     &lt;td&gt;内容&quot;,//这里改成自己的名字</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        &quot;&lt;/table&gt;&quot;,</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    ],</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    &quot;doxdocgen.file.fileOrder&quot;: [</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        &quot;file&quot;,</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        &quot;brief&quot;,</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        &quot;author&quot;,</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        &quot;version&quot;,</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        &quot;date&quot;,</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        &quot;empty&quot;,</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        &quot;copyright&quot;,</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        &quot;empty&quot;,</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        &quot;custom&quot;</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    ],</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    &quot;doxdocgen.file.fileTemplate&quot;: &quot;@file {name}&quot;,</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    &quot;doxdocgen.file.versionTag&quot;: &quot;@version 1.0&quot;,</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    &quot;doxdocgen.generic.authorEmail&quot;: &quot;sunkaixin@weichai.com&quot;,//改成自己邮箱</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    &quot;doxdocgen.generic.authorName&quot;: &quot;孙凯信&quot;,//改成自己名字</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    &quot;doxdocgen.generic.authorTag&quot;: &quot;@author {author} ({email})&quot;,</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    &quot;doxdocgen.generic.order&quot;: [</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        &quot;brief&quot;,</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        &quot;empty&quot;,</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        &quot;tparam&quot;,</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        &quot;param&quot;,</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        &quot;return&quot;</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    ],</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    &quot;doxdocgen.generic.paramTemplate&quot;: &quot;@param{indent:8}{param}{indent:25}My Param doc&quot;,</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    &quot;doxdocgen.generic.returnTemplate&quot;: &quot;@return {type} &quot;,</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    &quot;doxdocgen.generic.splitCasingSmartText&quot;: true,</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    &quot;editor.semanticTokenColorCustomizations&quot;: null,</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div></div><!-- fragment --><h2>代码开发规范</h2>
+<blockquote class="doxtable">
+<p>在本部分约束了代码开发过程中的行为规范，涉及到的部分功能使用不做详细概述 </p>
+</blockquote>
+<h3>项目及文件建立原则</h3>
+<p>项目文件应由该项目的主程序员根据详细功能开发方案进行建立，写好相关README文件后，上传至gitlab，项目参与人员将项目git至本地，并按照README中的<code>项目分工（TODO）</code>进行开发。</p>
+<h3>代码开发原则</h3>
+<p>为了遵循**易读性**和**复用性**的原则，代码尽量遵循以下开发原则：</p>
+<ol type="1">
+<li>按照文件目录由该目录的负责人进行功能封装，封装为函数或类；</li>
+<li>对于一个函数功能应建立单独的文件夹，方便后续的重载编写；</li>
+<li>函数、类、类函数等尽量都写成模板的形式；</li>
+<li>以尽量详细的要求来撰写注释，并符合doxygen注释要求；</li>
+<li>所编写的代码应经过单元测试后进行交付。</li>
+</ol>
+<h3>代码注释原则及doxygen使用说明</h3>
+<blockquote class="doxtable">
+<p>Doxygen 是一个程序的文件产生工具，可将程序中的特定批注转换成为说明文件。提供了一套注释方式便于把代码中的注释生成说明文档。 </p>
+</blockquote>
+<h4>C++</h4>
+<p>1、简单注释</p>
+<ul>
+<li>单行注释：/// 或者 //!</li>
+<li>多行注释：/** 或者 /*!</li>
+</ul>
+<p>2、文件注释</p>
+<ul>
+<li>文件注释通常放在整个文件开头，例如：</li>
+</ul>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;/**下面@和后面关键字之间无空格</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; * @ file perception.cpp</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; * @ brief 本程序实现项目所需的感知功能，接收一个32线激光雷达信息、两个单线激光雷达信息，输出障碍物列表（lidarObject）</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; * @ author 孙凯信 (sunkaixin@weichai.com)</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; * @ version 1.0</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; * @ date 2020-09-21</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; * @ copyright Copyright (c) 2020  潍柴动力</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; * </div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; * @ par 修改日志:</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; * &lt;table&gt;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; * &lt;tr&gt;&lt;th&gt;Date       &lt;th&gt;Version &lt;th&gt;Author  &lt;th&gt;Description</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; * &lt;tr&gt;&lt;td&gt;2020-09-21 &lt;td&gt;1.0     &lt;td&gt;孙凯信     &lt;td&gt;内容</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; * &lt;/table&gt;</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; */</div></div><!-- fragment --> <blockquote class="doxtable">
+<p>当配置完成后，在文件开头输入<code>/**</code>后，点击<code>回车</code>，即可自动加载模板 </p>
+</blockquote>
+<p>3、类定义注释</p>
+<ul>
+<li>类定义的注释方式非常简单，使用@ brief后面填写类的概述，换行填写类的详细信息，例如：</li>
+</ul>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;/**下面@和后面关键字之间无空格</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; * @ brief 测试类</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; * 主要用来演示Doxygen类的注释方式</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; */</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; class Test</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; {</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; };</div></div><!-- fragment --><blockquote class="doxtable">
+<p>当配置完成后，在类定义前一行输入<code>/**</code>后，点击<code>回车</code>，即可自动加载模板，命名空间、结构体、联合体、枚举定义与类定义注释方式一致。 </p>
+</blockquote>
+<p>4、常量/变量的注释</p>
+<blockquote class="doxtable">
+<p>常量/变量包括以下几种类型 </p>
+</blockquote>
+<ul>
+<li>全局常量变量</li>
+<li>宏定义</li>
+<li>类/结构体/联合体的成员变量</li>
+<li>枚举类型的成员</li>
+</ul>
+<p>注释分为两种方式，可根据具体情况自行选择：</p>
+<ul>
+<li>代码前注释</li>
+</ul>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;/// 注释</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;常量/变量</div></div><!-- fragment --><p> 例如：</p>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;/// 缓存大小</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;#define BUFSIZ 1024*4</div></div><!-- fragment --><ul>
+<li>代码后注释</li>
+</ul>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;常量/变量 ///&lt; 注释</div></div><!-- fragment --><p> 例如：</p>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;#define BUFSIZ 1024*4 ///&lt; 缓存大小</div></div><!-- fragment --><p>5、函数注释</p>
+<ul>
+<li>函数注释通常放在整函数的前一行，例如： <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;/**下面@和后面关键字之间无空格</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; * @ brief 此函数用于点云降采样，根据voxel_size对cloud_in点云进行体素滤波。</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; * @ tparam PointT           点云模板</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; * @ param  cloud_in         输入的点云</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; * @ param  cloud_out        输出的点云</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; * @ param  voxel_size_x     体素网格的长度</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; * @ param  voxel_size_y     体素网格的宽度</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; * @ param  voxel_size_z     体素网格的高度</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; */</div></div><!-- fragment --> <blockquote class="doxtable">
+<p>当配置完成后，在函数前一行输入<code>/**</code>后，点击<code>回车</code>，即可自动加载模板 </p>
+</blockquote>
+</li>
+</ul>
+<p>根据函数需求，可进行详细函数注释： </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;/**下面@和后面关键字之间无空格</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; * @ brief 函数简介</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; * @ detail 详细说明</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; * </div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; * @ param 形参 参数说明</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; * @ param 形参 参数说明</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; * @ return 返回说明</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; * @ retval 返回值说明</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; * @ note 注解</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; * @ attention 注意</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; * @ warning 警告</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; * @ exception 异常</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; */</div></div><!-- fragment --> <h4>Python</h4>
+<p>&gt;Python中的注释规则较为简单，未在vocode中配置快捷方式，利用多行注释的方式，在文件开头，函数、类等下一行进行注释即可</p>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;&quot;&quot;&quot;@ package docstring</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;Documentation for this module.</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;More details.</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;&quot;&quot;&quot;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;def func():</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    &quot;&quot;&quot;Documentation for a function.</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    More details.</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    &quot;&quot;&quot;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    pass</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;class PyClass:</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    &quot;&quot;&quot;Documentation for a class.</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    More details.</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    &quot;&quot;&quot;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    def __init__(self):</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        &quot;&quot;&quot;The constructor.&quot;&quot;&quot;</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        self._memVar = 0;</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    def PyMethod(self):</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        &quot;&quot;&quot;Documentation for a method.&quot;&quot;&quot;</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        pass</div></div><!-- fragment --><h4>TODO使用规则</h4>
+<p>写代码过程中，突然发现一个Bug，但是又不想停下来手中的活，以免打断思路，怎么办？按代码编写会规范，都是建议在代码中加个TODO注释。比如这样： </p><div class="fragment"><div class="line"><span class="comment">//TODO:这里有个bug，但是空间太小了，我的算法写不下。</span></div></div><!-- fragment --><p> 或者 </p><div class="fragment"><div class="line"><span class="comment">//FIXME:哪个混蛋写的垃圾代码，会崩溃的。</span></div></div><!-- fragment --><p> 当写完后即可在vscode资源管理器（<code>Ctrl+Shift+E</code>）中看到TODOS的列表清单，同时在程序中也会以高亮的形式体现出来。</p>
+<h4>doxygen使用方法</h4>
+<ol type="1">
+<li>按<code>Ctrl+Shift+T</code>打开终端，输入<code>doxywizard</code>，按回车，打开doxygen可视化界面</li>
+<li>设置工作路径、源代码路径（注意勾选scan recursively）、导出目录，如下图所示</li>
+</ol>
+<div class="image">
+<img src="img/1.png"  alt="1"/>
+</div>
+<ol type="1">
+<li>设置输出选项，选择带导航页面的HTML，根据需求选择是否输出其他文件，如下图所示</li>
+</ol>
+<div class="image">
+<img src="img/2.png"  alt="2"/>
+</div>
+<ol type="1">
+<li>在Expert页面可以进行详细配置，在input中将USE_MDFILE_ASMAINPAGE设置为主页面的README.md文件，如下图所示</li>
+</ol>
+<div class="image">
+<img src="img/3.png"  alt="3"/>
+</div>
+<div class="image">
+<img src="img/4.png"  alt="4"/>
+</div>
+<ol type="1">
+<li>在Run页面下点击Run doxygen，生成文档，打开html文件夹下的index.html文件即可，如下图所示</li>
+</ol>
+<div class="image">
+<img src="img/5.png"  alt="5"/>
+</div>
+<h2>基于vocode的git使用方法</h2>
+<ol type="1">
+<li>在想要存放项目工程的目录下点击右键，选择“在终端中打开”；</li>
+<li>在终端界面输入<code>git clone <a href="http://10.0.72.50">http://10.0.72.50</a>：9091/sunkaixin/Code_Specification.git</code>，其中网址为项目的git地址；</li>
+<li>然后在终端输入<code>code .</code>，打开当前目录下的vscode；</li>
+<li>git相关操作按钮如下图所示，当在项目中进行更改后，更改内容会在git管理器中显示，当更改完成后，选择**分支版本**，然后点击**暂存更改**，然后点击**提交**，输入本次修改的简要说明，最后点击**一键同步**，实现git版本同步。</li>
+</ol>
+<div class="image">
+<img src="img/git1.png"  alt="git1"/>
+</div>
+ </div></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者 &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

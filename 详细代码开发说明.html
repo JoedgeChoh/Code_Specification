@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>详细代码开发说明.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E8%AF%A6%E7%BB%86%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%E8%AF%B4%E6%98%8E">详细代码开发说明</h1>
+<h2 id="%E7%9B%AE%E5%BD%95">目录</h2>
+<!-- TOC -->
+<ul>
+<li><a href="#%E8%AF%A6%E7%BB%86%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%E8%AF%B4%E6%98%8E">详细代码开发说明</a>
+<ul>
+<li><a href="#%E7%9B%AE%E5%BD%95">目录</a></li>
+<li><a href="#%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7">开发工具</a></li>
+<li><a href="#%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85">插件安装</a>
+<ul>
+<li><a href="#%E6%8F%92%E4%BB%B6%E5%90%8D%E7%A7%B0">插件名称</a></li>
+<li><a href="#%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85">插件安装</a></li>
+<li><a href="#%E5%85%B6%E4%BB%96%E8%BD%AF%E4%BB%B6%E5%8F%8A%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85">其他软件及依赖安装</a></li>
+<li><a href="#%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE">插件配置</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83">代码开发规范</a>
+<ul>
+<li><a href="#%E9%A1%B9%E7%9B%AE%E5%8F%8A%E6%96%87%E4%BB%B6%E5%BB%BA%E7%AB%8B%E5%8E%9F%E5%88%99">项目及文件建立原则</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%E5%8E%9F%E5%88%99">代码开发原则</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E5%8E%9F%E5%88%99%E5%8F%8Adoxygen%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E">代码注释原则及doxygen使用说明</a>
+<ul>
+<li><a href="#c">C++</a></li>
+<li><a href="#python">Python</a></li>
+<li><a href="#todo%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99">TODO使用规则</a></li>
+<li><a href="#doxygen%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95">doxygen使用方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h2 id="%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7">开发工具</h2>
+<blockquote>
+<p>推荐但不限定于使用vscode作为代码开发工具，如不使用vscode，请遵循代码及注释规范。</p>
+</blockquote>
+<p>工具名称：vscode</p>
+<p>版本：暂不限定</p>
+<p>下载地址：https://code.visualstudio.com/</p>
+<p>安装方式：下载.deb格式安装包，直接双击或者执行<code>sudo dpkg -i xxx.deb</code></p>
+<p>安装包位置：<code>soft_deb/code_1.48.1-1597857616_amd64.deb</code></p>
+<h2 id="%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85">插件安装</h2>
+<blockquote>
+<p>该插件可以帮助大家开发过程更加顺畅，并非强制要求。</p>
+</blockquote>
+<h3 id="%E6%8F%92%E4%BB%B6%E5%90%8D%E7%A7%B0">插件名称</h3>
+<p>1、名称: C/C++</p>
+<p>ID: ms-vscode.cpptools</p>
+<p>说明: C/C++ IntelliSense, debugging, and code browsing.</p>
+<p>版本: 1.0.1-insiders</p>
+<p>发布者: Microsoft</p>
+<p>VS Marketplace 链接: https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools</p>
+<p>2、名称: C++ Intellisense</p>
+<p>ID: austin.code-gnu-global</p>
+<p>说明: C/C++ Intellisense with the help of GNU Global tags</p>
+<p>版本: 0.2.2</p>
+<p>发布者: austin</p>
+<p>VS Marketplace 链接: https://marketplace.visualstudio.com/items?itemName=austin.code-gnu-global</p>
+<p>3、名称: Python</p>
+<p>ID: ms-python.python</p>
+<p>说明: Linting, Debugging (multi-threaded, remote), Intellisense, Jupyter Notebooks, code formatting, refactoring, unit tests, snippets, and more.</p>
+<p>版本: 2020.8.109390</p>
+<p>发布者: Microsoft</p>
+<p>VS Marketplace 链接: https://marketplace.visualstudio.com/items?itemName=ms-python.python</p>
+<p>4、名称: ROS</p>
+<p>ID: ms-iot.vscode-ros</p>
+<p>说明: Develop Robot Operating System (ROS) with Visual Studio Code.</p>
+<p>版本: 0.6.4</p>
+<p>发布者: Microsoft</p>
+<p>VS Marketplace 链接: https://marketplace.visualstudio.com/items?itemName=ms-iot.vscode-ros</p>
+<p>5、名称: Todo Tree</p>
+<p>ID: gruntfuggly.todo-tree</p>
+<p>说明: Show TODO, FIXME, etc. comment tags in a tree view</p>
+<p>版本: 0.0.178</p>
+<p>发布者: Gruntfuggly</p>
+<p>VS Marketplace 链接: https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree</p>
+<p>6、名称: Markdown All in One</p>
+<p>ID: yzhang.markdown-all-in-one</p>
+<p>说明: All you need to write Markdown (keyboard shortcuts, table of contents, auto preview and more)</p>
+<p>版本: 3.3.0</p>
+<p>发布者: Yu Zhang</p>
+<p>VS Marketplace 链接: https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one</p>
+<p>7、名称: Guides</p>
+<p>ID: spywhere.guides</p>
+<p>说明: An extension for more guide lines</p>
+<p>版本: 0.9.3</p>
+<p>发布者: spywhere</p>
+<p>VS Marketplace 链接: https://marketplace.visualstudio.com/items?itemName=spywhere.guides</p>
+<p>8、名称: GitLens — Git supercharged</p>
+<p>ID: eamodio.gitlens</p>
+<p>说明: Supercharge the Git capabilities built into Visual Studio Code — Visualize code authorship at a glance via Git blame annotations and code lens, seamlessly navigate and explore Git repositories, gain valuable insights via powerful comparison commands, and so much more</p>
+<p>版本: 10.2.2</p>
+<p>发布者: Eric Amodio</p>
+<p>VS Marketplace 链接: https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens</p>
+<p>9、名称: Doxygen Documentation Generator</p>
+<p>ID: cschlosser.doxdocgen</p>
+<p>说明: Let me generate Doxygen documentation from your source code for you.</p>
+<p>版本: 0.7.2</p>
+<p>发布者: Christoph Schlosser</p>
+<p>VS Marketplace 链接: https://marketplace.visualstudio.com/items?itemName=cschlosser.doxdocgen</p>
+<p>10、名称: Bracket Pair Colorizer</p>
+<p>ID: coenraads.bracket-pair-colorizer</p>
+<p>说明: A customizable extension for colorizing matching brackets</p>
+<p>版本: 1.0.61</p>
+<p>发布者: CoenraadS</p>
+<p>VS Marketplace 链接: https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer</p>
+<p>11、名称: Auto Markdown TOC</p>
+<p>ID: huntertran.auto-markdown-toc</p>
+<p>说明: Markdown TOC (Table Of Contents) Plugin for Visual Studio Code.</p>
+<p>版本: 3.0.12</p>
+<p>发布者: Hunter Tran</p>
+<p>VS Marketplace 链接: https://marketplace.visualstudio.com/items?itemName=huntertran.auto-markdown-toc</p>
+<h3 id="%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85">插件安装</h3>
+<ol>
+<li><code>Ctrl+Shift+X</code>打开扩展页面；</li>
+<li>在搜索栏搜索上述的插件名称或插件ID，找寻对应的插件；</li>
+<li>点击<code>install</code>进行安装；</li>
+<li>重新启动vscode。</li>
+</ol>
+<h3 id="%E5%85%B6%E4%BB%96%E8%BD%AF%E4%BB%B6%E5%8F%8A%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85">其他软件及依赖安装</h3>
+<ol>
+<li><code>sudo apt-get install graphviz graphviz-doc</code>；</li>
+<li><code>sudo apt-get install doxygen doxygen-gui</code>。</li>
+</ol>
+<h3 id="%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE">插件配置</h3>
+<ol>
+<li><code>Ctrl+Shift+P</code>打开控制端口；</li>
+<li>在控制端口中输入<code>settings json</code>，点击<code>Open Setting</code>；</li>
+<li>将下述配置粘贴至<code>settings.json</code>文件中，并按照注释进行修改：</li>
+</ol>
+<pre class="hljs"><code><div>{
+    <span class="hljs-attr">"window.zoomLevel"</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-attr">"editor.fontSize"</span>: <span class="hljs-number">15</span>,
+    <span class="hljs-attr">"workbench.colorTheme"</span>: <span class="hljs-string">"Horizon Bright Italic"</span>,
+    <span class="hljs-attr">"cmake.configureOnOpen"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"explorer.confirmDelete"</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">"terminal.integrated.shell.linux"</span>: <span class="hljs-string">"/bin/bash"</span>,
+    <span class="hljs-attr">"editor.renderIndentGuides"</span>: <span class="hljs-literal">false</span>,
+
+    <span class="hljs-attr">"git.ignoreMissingGitWarning"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"gitlens.views.repositories.location"</span>: <span class="hljs-string">"gitlens"</span>,
+    <span class="hljs-attr">"gitlens.views.fileHistory.location"</span>: <span class="hljs-string">"gitlens"</span>,
+    <span class="hljs-attr">"gitlens.views.lineHistory.location"</span>: <span class="hljs-string">"gitlens"</span>,
+    <span class="hljs-attr">"gitlens.views.compare.location"</span>: <span class="hljs-string">"gitlens"</span>,
+    <span class="hljs-attr">"gitlens.views.search.location"</span>: <span class="hljs-string">"gitlens"</span>,
+    <span class="hljs-attr">"[markdown]"</span>: {
+      <span class="hljs-attr">"editor.defaultFormatter"</span>: <span class="hljs-string">"yzhang.markdown-all-in-one"</span>
+    },
+    <span class="hljs-attr">"files.autoSave"</span>: <span class="hljs-string">"afterDelay"</span>,
+    <span class="hljs-attr">"gitlens.gitCommands.closeOnFocusOut"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"git.autofetch"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"todo-tree.tree.showScanModeButton"</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">"C_Cpp.updateChannel"</span>: <span class="hljs-string">"Insiders"</span>,
+    <span class="hljs-attr">"launch"</span>: {
+      <span class="hljs-attr">"configurations"</span>: [],
+      <span class="hljs-attr">"compounds"</span>: []
+    },
+
+    <span class="hljs-attr">"doxdocgen.file.copyrightTag"</span>: [
+      <span class="hljs-string">"@copyright Copyright (c) {year}  潍柴动力"</span>
+    ],
+    <span class="hljs-attr">"doxdocgen.file.customTag"</span>: [
+        <span class="hljs-string">"@par 修改日志:"</span>,
+        <span class="hljs-string">"&lt;table&gt;"</span>,
+        <span class="hljs-string">"&lt;tr&gt;&lt;th&gt;Date       &lt;th&gt;Version &lt;th&gt;Author  &lt;th&gt;Description"</span>,
+        <span class="hljs-string">"&lt;tr&gt;&lt;td&gt;{date} &lt;td&gt;1.0     &lt;td&gt;孙凯信     &lt;td&gt;内容"</span>,<span class="hljs-comment">//这里改成自己的名字</span>
+        <span class="hljs-string">"&lt;/table&gt;"</span>,
+    ],
+    <span class="hljs-attr">"doxdocgen.file.fileOrder"</span>: [
+        <span class="hljs-string">"file"</span>,
+        <span class="hljs-string">"brief"</span>,
+        <span class="hljs-string">"author"</span>,
+        <span class="hljs-string">"version"</span>,
+        <span class="hljs-string">"date"</span>,
+        <span class="hljs-string">"empty"</span>,
+        <span class="hljs-string">"copyright"</span>,
+        <span class="hljs-string">"empty"</span>,
+        <span class="hljs-string">"custom"</span>
+    ],
+    <span class="hljs-attr">"doxdocgen.file.fileTemplate"</span>: <span class="hljs-string">"@file {name}"</span>,
+    <span class="hljs-attr">"doxdocgen.file.versionTag"</span>: <span class="hljs-string">"@version 1.0"</span>,
+    <span class="hljs-attr">"doxdocgen.generic.authorEmail"</span>: <span class="hljs-string">"sunkaixin@weichai.com"</span>,<span class="hljs-comment">//改成自己邮箱</span>
+    <span class="hljs-attr">"doxdocgen.generic.authorName"</span>: <span class="hljs-string">"孙凯信"</span>,<span class="hljs-comment">//改成自己名字</span>
+    <span class="hljs-attr">"doxdocgen.generic.authorTag"</span>: <span class="hljs-string">"@author {author} ({email})"</span>,
+
+    <span class="hljs-attr">"doxdocgen.generic.order"</span>: [
+        <span class="hljs-string">"brief"</span>,
+        <span class="hljs-string">"empty"</span>,
+        <span class="hljs-string">"tparam"</span>,
+        <span class="hljs-string">"param"</span>,
+        <span class="hljs-string">"return"</span>
+    ],
+    <span class="hljs-attr">"doxdocgen.generic.paramTemplate"</span>: <span class="hljs-string">"@param{indent:8}{param}{indent:25}My Param doc"</span>,
+    <span class="hljs-attr">"doxdocgen.generic.returnTemplate"</span>: <span class="hljs-string">"@return {type} "</span>,
+    <span class="hljs-attr">"doxdocgen.generic.splitCasingSmartText"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"editor.semanticTokenColorCustomizations"</span>: <span class="hljs-literal">null</span>,
+}
+</div></code></pre>
+<h2 id="%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83">代码开发规范</h2>
+<blockquote>
+<p>在本部分约束了代码开发过程中的行为规范，涉及到的部分功能使用不做详细概述</p>
+</blockquote>
+<h3 id="%E9%A1%B9%E7%9B%AE%E5%8F%8A%E6%96%87%E4%BB%B6%E5%BB%BA%E7%AB%8B%E5%8E%9F%E5%88%99">项目及文件建立原则</h3>
+<p>项目文件应由该项目的主程序员根据详细功能开发方案进行建立，写好相关README文件后，上传至gitlab，项目参与人员将项目git至本地，并按照README中的<code>项目分工（TODO）</code>进行开发。</p>
+<h3 id="%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%E5%8E%9F%E5%88%99">代码开发原则</h3>
+<p>为了遵循<strong>易读性</strong>和<strong>复用性</strong>的原则，代码尽量遵循以下开发原则：</p>
+<ol>
+<li>按照文件目录由该目录的负责人进行功能封装，封装为函数或类；</li>
+<li>对于一个函数功能应建立单独的文件夹，方便后续的重载编写；</li>
+<li>函数、类、类函数等尽量都写成模板的形式；</li>
+<li>以尽量详细的要求来撰写注释，并符合doxygen注释要求；</li>
+<li>所编写的代码应经过单元测试后进行交付。</li>
+</ol>
+<h3 id="%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E5%8E%9F%E5%88%99%E5%8F%8Adoxygen%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E">代码注释原则及doxygen使用说明</h3>
+<blockquote>
+<p>Doxygen 是一个程序的文件产生工具，可将程序中的特定批注转换成为说明文件。提供了一套注释方式便于把代码中的注释生成说明文档。</p>
+</blockquote>
+<h4 id="c">C++</h4>
+<p>1、简单注释</p>
+<ul>
+<li>单行注释：/// 或者 //!</li>
+<li>多行注释：/** 或者 /*!</li>
+</ul>
+<p>2、文件注释</p>
+<ul>
+<li>文件注释通常放在整个文件开头，例如：</li>
+</ul>
+<pre class="hljs"><code><div>/**下面@和后面关键字之间无空格
+ * @ file perception.cpp
+ * @ brief 本程序实现项目所需的感知功能，接收一个32线激光雷达信息、两个单线激光雷达信息，输出障碍物列表（lidarObject）
+ * @ author 孙凯信 (sunkaixin@weichai.com)
+ * @ version 1.0
+ * @ date 2020-09-21
+ * @ copyright Copyright (c) 2020  潍柴动力
+ * 
+ * @ par 修改日志:
+ * &lt;table&gt;
+ * &lt;tr&gt;&lt;th&gt;Date       &lt;th&gt;Version &lt;th&gt;Author  &lt;th&gt;Description
+ * &lt;tr&gt;&lt;td&gt;2020-09-21 &lt;td&gt;1.0     &lt;td&gt;孙凯信     &lt;td&gt;内容
+ * &lt;/table&gt;
+ */
+</div></code></pre>
+<blockquote>
+<p>当配置完成后，在文件开头输入<code>/**</code>后，点击<code>回车</code>，即可自动加载模板</p>
+</blockquote>
+<p>3、类定义注释</p>
+<ul>
+<li>类定义的注释方式非常简单，使用@ brief后面填写类的概述，换行填写类的详细信息，例如：</li>
+</ul>
+<pre class="hljs"><code><div>/**下面@和后面关键字之间无空格
+ * @ brief 测试类
+ * 主要用来演示Doxygen类的注释方式
+ */
+ class Test
+ {
+
+ };
+</div></code></pre>
+<blockquote>
+<p>当配置完成后，在类定义前一行输入<code>/**</code>后，点击<code>回车</code>，即可自动加载模板，命名空间、结构体、联合体、枚举定义与类定义注释方式一致。</p>
+</blockquote>
+<p>4、常量/变量的注释</p>
+<blockquote>
+<p>常量/变量包括以下几种类型</p>
+</blockquote>
+<ul>
+<li>全局常量变量</li>
+<li>宏定义</li>
+<li>类/结构体/联合体的成员变量</li>
+<li>枚举类型的成员</li>
+</ul>
+<p>注释分为两种方式，可根据具体情况自行选择：</p>
+<ul>
+<li>代码前注释</li>
+</ul>
+<pre class="hljs"><code><div>/// 注释
+常量/变量
+</div></code></pre>
+<p>例如：</p>
+<pre class="hljs"><code><div>/// 缓存大小
+#define BUFSIZ 1024*4
+</div></code></pre>
+<ul>
+<li>代码后注释</li>
+</ul>
+<pre class="hljs"><code><div>常量/变量 ///&lt; 注释
+</div></code></pre>
+<p>例如：</p>
+<pre class="hljs"><code><div>#define BUFSIZ 1024*4 ///&lt; 缓存大小
+</div></code></pre>
+<p>5、函数注释</p>
+<ul>
+<li>函数注释通常放在整函数的前一行，例如：</li>
+</ul>
+<pre class="hljs"><code><div>/**下面@和后面关键字之间无空格
+ * @ brief 此函数用于点云降采样，根据voxel_size对cloud_in点云进行体素滤波。
+ * @ tparam PointT           点云模板
+ * @ param  cloud_in         输入的点云
+ * @ param  cloud_out        输出的点云
+ * @ param  voxel_size_x     体素网格的长度
+ * @ param  voxel_size_y     体素网格的宽度
+ * @ param  voxel_size_z     体素网格的高度
+ */
+</div></code></pre>
+<blockquote>
+<p>当配置完成后，在函数前一行输入<code>/**</code>后，点击<code>回车</code>，即可自动加载模板</p>
+</blockquote>
+<p>根据函数需求，可进行详细函数注释：</p>
+<pre class="hljs"><code><div>/**下面@和后面关键字之间无空格
+ * @ brief 函数简介
+ * @ detail 详细说明
+ * 
+ * @ param 形参 参数说明
+ * @ param 形参 参数说明
+ * @ return 返回说明
+ * @ retval 返回值说明
+ * @ note 注解
+ * @ attention 注意
+ * @ warning 警告
+ * @ exception 异常
+ */
+</div></code></pre>
+<h4 id="python">Python</h4>
+<blockquote>
+<p>Python中的注释规则较为简单，未在vocode中配置快捷方式，利用多行注释的方式，在文件开头，函数、类等下一行进行注释即可</p>
+</blockquote>
+<pre class="hljs"><code><div>&quot;&quot;&quot;@ package docstring
+Documentation for this module.
+ 
+More details.
+&quot;&quot;&quot;
+ 
+def func():
+    &quot;&quot;&quot;Documentation for a function.
+ 
+    More details.
+    &quot;&quot;&quot;
+    pass
+ 
+class PyClass:
+    &quot;&quot;&quot;Documentation for a class.
+ 
+    More details.
+    &quot;&quot;&quot;
+   
+    def __init__(self):
+        &quot;&quot;&quot;The constructor.&quot;&quot;&quot;
+        self._memVar = 0;
+   
+    def PyMethod(self):
+        &quot;&quot;&quot;Documentation for a method.&quot;&quot;&quot;
+        pass
+</div></code></pre>
+<h4 id="todo%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99">TODO使用规则</h4>
+<p>写代码过程中，突然发现一个Bug，但是又不想停下来手中的活，以免打断思路，怎么办？按代码编写会规范，都是建议在代码中加个TODO注释。比如这样：</p>
+<pre class="hljs"><code><div><span class="hljs-comment">//<span class="hljs-doctag">TODO:</span>这里有个bug，但是空间太小了，我的算法写不下。</span>
+</div></code></pre>
+<p>或者</p>
+<pre class="hljs"><code><div><span class="hljs-comment">//<span class="hljs-doctag">FIXME:</span>哪个混蛋写的垃圾代码，会崩溃的。</span>
+</div></code></pre>
+<p>当写完后即可在vscode资源管理器（<code>Ctrl+Shift+E</code>）中看到TODOS的列表清单，同时在程序中也会以高亮的形式体现出来。</p>
+<h4 id="doxygen%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95">doxygen使用方法</h4>
+<ol>
+<li>
+<p>按<code>Ctrl+Shift+T</code>打开终端，输入<code>doxywizard</code>，按回车，打开doxygen可视化界面</p>
+</li>
+<li>
+<p>设置工作路径、源代码路径（注意勾选scan recursively）、导出目录，如下图所示</p>
+</li>
+</ol>
+<p><img src="img/1.png" alt="1"></p>
+<ol start="3">
+<li>设置输出选项，选择带导航页面的HTML，根据需求选择是否输出其他文件，如下图所示</li>
+</ol>
+<p><img src="img/2.png" alt="2"></p>
+<ol start="4">
+<li>在Expert页面可以进行详细配置，在input中将USE_MDFILE_ASMAINPAGE设置为主页面的README.md文件，如下图所示</li>
+</ol>
+<p><img src="img/3.png" alt="3"></p>
+<p><img src="img/4.png" alt="4"></p>
+<ol start="5">
+<li>在Run页面下点击Run doxygen，生成文档，打开html文件夹下的index.html文件即可，如下图所示</li>
+</ol>
+<p><img src="img/5.png" alt="5"></p>
+
+</body>
+</html>

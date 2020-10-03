@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>Code_Specification: perception/Cluster/downsampling/downsampling.h 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Code_Specification
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="pages.html"><span>相关页面</span></a></li>
+      <li><a href="namespaces.html"><span>命名空间</span></a></li>
+      <li><a href="annotated.html"><span>类</span></a></li>
+      <li class="current"><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>文件列表</span></a></li>
+      <li><a href="globals.html"><span>文件成员</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_85916f0b90164c3695644f7c783d5aff.html">perception</a></li><li class="navelem"><a class="el" href="dir_619fa184213f6932d50e4dcd8c342f98.html">Cluster</a></li><li class="navelem"><a class="el" href="dir_810dfdab0e3a85dee7936816d303937b.html">downsampling</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle">
+<div class="title">downsampling.h 文件参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>此文件为点云降采样的声明  
+<a href="#details">更多...</a></p>
+<div class="textblock"><code>#include &lt;pcl/filters/voxel_grid.h&gt;</code><br />
+<code>#include &lt;pcl/io/io.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+downsampling.h 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="downsampling_8h__incl.png" border="0" usemap="#perception_2_cluster_2downsampling_2downsampling_8h" alt=""/></div>
+</div>
+</div><div class="textblock"><div class="dynheader">
+此图展示该文件直接或间接的被哪些文件引用了:</div>
+<div class="dyncontent">
+<div class="center"><img src="downsampling_8h__dep__incl.png" border="0" usemap="#perception_2_cluster_2downsampling_2downsampling_8hdep" alt=""/></div>
+<map name="perception_2_cluster_2downsampling_2downsampling_8hdep" id="perception_2_cluster_2downsampling_2downsampling_8hdep">
+<area shape="rect" id="node2" href="downsampling_8hpp.html" title="此文件为点云降采样的具体实现方法 " alt="" coords="5,95,227,136"/>
+</map>
+</div>
+</div>
+<p><a href="downsampling_8h_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a1a8fe46ad4a84f6bad00406340829ee2"><td class="memTemplParams" colspan="2">template&lt;typename PointT &gt; </td></tr>
+<tr class="memitem:a1a8fe46ad4a84f6bad00406340829ee2"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="downsampling_8h.html#a1a8fe46ad4a84f6bad00406340829ee2">downsampling</a> (typename pcl::PointCloud&lt; PointT &gt;::Ptr &amp;cloud_in, typename pcl::PointCloud&lt; PointT &gt;::Ptr &amp;cloud_out, const float voxel_size_x, const float voxel_size_y, const float voxel_size_z)</td></tr>
+<tr class="memdesc:a1a8fe46ad4a84f6bad00406340829ee2"><td class="mdescLeft">&#160;</td><td class="mdescRight">此函数用于点云降采样，根据voxel_size对cloud_in点云进行体素滤波。  <a href="#a1a8fe46ad4a84f6bad00406340829ee2">更多...</a><br /></td></tr>
+<tr class="separator:a1a8fe46ad4a84f6bad00406340829ee2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>此文件为点云降采样的声明 </p>
+<dl class="section author"><dt>作者</dt><dd>孙凯信 (<a href="#" onclick="location.href='mai'+'lto:'+'sun'+'ka'+'ixi'+'n@'+'wei'+'ch'+'ai.'+'co'+'m'; return false;">sunka<span style="display: none;">.nosp@m.</span>ixin<span style="display: none;">.nosp@m.</span>@weic<span style="display: none;">.nosp@m.</span>hai.<span style="display: none;">.nosp@m.</span>com</a>) </dd></dl>
+<dl class="section version"><dt>版本</dt><dd>1.0 </dd></dl>
+<dl class="section date"><dt>日期</dt><dd>2020-09-18</dd></dl>
+<dl class="section copyright"><dt>版权所有</dt><dd>Copyright (c) 2020 潍柴动力</dd></dl>
+<dl class="section user"><dt>修改日志:</dt><dd><table class="doxtable">
+<tr>
+<th>Date </th><th>Version </th><th>Author </th><th>Description </th></tr>
+<tr>
+<td>2020-09-18 </td><td>1.0 </td><td>孙凯信 </td><td>函数实现 </td></tr>
+</table>
+</dd></dl>
+</div><h2 class="groupheader">函数说明</h2>
+<a class="anchor" id="a1a8fe46ad4a84f6bad00406340829ee2"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename PointT &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void downsampling </td>
+          <td>(</td>
+          <td class="paramtype">typename pcl::PointCloud&lt; PointT &gt;::Ptr &amp;&#160;</td>
+          <td class="paramname"><em>cloud_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">typename pcl::PointCloud&lt; PointT &gt;::Ptr &amp;&#160;</td>
+          <td class="paramname"><em>cloud_out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>voxel_size_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>voxel_size_y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>voxel_size_z</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>此函数用于点云降采样，根据voxel_size对cloud_in点云进行体素滤波。 </p>
+<dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">PointT</td><td>点云模板 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cloud_in</td><td>输入的点云 </td></tr>
+    <tr><td class="paramname">cloud_out</td><td>输出的点云 </td></tr>
+    <tr><td class="paramname">voxel_size_x</td><td>体素网格的长度 </td></tr>
+    <tr><td class="paramname">voxel_size_y</td><td>体素网格的宽度 </td></tr>
+    <tr><td class="paramname">voxel_size_z</td><td>体素网格的高度 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者 &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>
